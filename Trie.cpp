@@ -50,7 +50,7 @@ void Trie::insert(string &key, Book *book) {
 }
 
 void Trie::parseBookCSV(string& filePath) {
-    // Start time
+    // Start time parsing
     auto start = std::chrono::high_resolution_clock::now();
 
     ifstream file(filePath);
@@ -87,8 +87,9 @@ void Trie::parseBookCSV(string& filePath) {
         // Insert Book object into Trie
         insert(lowerCaseBookTitle, book);
     }
+
+    // End time parsing
     auto stop = std::chrono::high_resolution_clock::now();
-//    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
     parsingDuration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
     std::cout << "Parsing Duration: " << parsingDuration << " milliseconds" << std::endl;
 }
@@ -114,7 +115,7 @@ bool Trie::isPrefixExist(string& key) {
 }
 
 vector<Book*> Trie::prefixSearch(string& key) {
-    // Start time of function
+    // Start time search
     auto start = std::chrono::high_resolution_clock::now();
 
     // Initialize currNode
@@ -154,31 +155,12 @@ vector<Book*> Trie::prefixSearch(string& key) {
         }
     }
 
+    // Start time search
     auto stop = std::chrono::high_resolution_clock::now();
-//    auto duration = std::chrono::duration_cast<std::chrono::microseconds >(stop - start);
     retreiveDuration = std::chrono::duration_cast<std::chrono::microseconds >(stop - start).count();
     std::cout << "Retreive Duration: " << retreiveDuration << " microseconds" << std::endl;
 
     return resBooks;
-}
-
-bool Trie::search_key(string& key){
-    // Initialize currNode
-    TrieNode* currentNode = this->root;
-
-    // Iterate over ever letter
-    for (auto letter : key) {
-
-        // Check if node exist
-        if (currentNode->children[letter - 'a'] == nullptr) {
-            return false;
-        }
-
-        // Move to next node
-        currentNode = currentNode->children[letter - 'a'];
-    }
-
-    return (currentNode->wordCount > 0);
 }
 
 size_t Trie::getRetreiveDuration() {

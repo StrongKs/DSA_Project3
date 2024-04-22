@@ -52,7 +52,6 @@ public:
 
     void insert(string& key, Book *book);   // insert key
     bool isPrefixExist(string& key);    // check if prefix is there
-    bool search_key(string& key);   // search is work is actually there
     vector<Book*> prefixSearch(string& key);
 
     void parseBookCSV(string& filePath);   // iterates through CSV
