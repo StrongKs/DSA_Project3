@@ -6,6 +6,7 @@
 #include <vector>
 #include <cctype>  // For std::tolower
 #include <queue>
+#include <chrono>
 
 #include "Trie.h"
 
@@ -49,6 +50,9 @@ void Trie::insert(string &key, Book *book) {
 }
 
 void Trie::parseBookCSV(string& filePath) {
+    // Start time
+    auto start = std::chrono::high_resolution_clock::now();
+
     ifstream file(filePath);
     string line;
 
@@ -76,13 +80,17 @@ void Trie::parseBookCSV(string& filePath) {
         std::getline(ss, temp, '\r');
         book->pageCount = stoi(temp);
 
-        book->print();
+//        book->print();
 
         string lowerCaseBookTitle = toLowerAndRemoveNonLetters(book->title);
 
         // Insert Book object into Trie
         insert(lowerCaseBookTitle, book);
     }
+    auto stop = std::chrono::high_resolution_clock::now();
+//    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+    parsingDuration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
+    std::cout << "Parsing Duration: " << parsingDuration << " milliseconds" << std::endl;
 }
 
 bool Trie::isPrefixExist(string& key) {
@@ -106,6 +114,9 @@ bool Trie::isPrefixExist(string& key) {
 }
 
 vector<Book*> Trie::prefixSearch(string& key) {
+    // Start time of function
+    auto start = std::chrono::high_resolution_clock::now();
+
     // Initialize currNode
     TrieNode* currentNode = this->root;
 
@@ -143,6 +154,11 @@ vector<Book*> Trie::prefixSearch(string& key) {
         }
     }
 
+    auto stop = std::chrono::high_resolution_clock::now();
+//    auto duration = std::chrono::duration_cast<std::chrono::microseconds >(stop - start);
+    retreiveDuration = std::chrono::duration_cast<std::chrono::microseconds >(stop - start).count();
+    std::cout << "Retreive Duration: " << retreiveDuration << " microseconds" << std::endl;
+
     return resBooks;
 }
 
@@ -163,4 +179,12 @@ bool Trie::search_key(string& key){
     }
 
     return (currentNode->wordCount > 0);
+}
+
+size_t Trie::getRetreiveDuration() {
+    return retreiveDuration;
+}
+
+size_t Trie::getParsingDuration() {
+    return parsingDuration;
 }
