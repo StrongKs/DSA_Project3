@@ -10,6 +10,8 @@ private:
     std::vector<std::vector<std::pair<std::string,Book>>> table;
     int size;
     int capacity;
+    size_t retrieveDuration;
+    size_t parsingDuration;
 
 
 public:
@@ -30,6 +32,10 @@ public:
     std::string titleCleanup(std::string& title);
 
     void parseCSVHash(const std::string& filePath);
+
+    size_t getRetrieveDuration();
+
+    size_t getParsingDuration();
 
 
 };

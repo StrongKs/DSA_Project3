@@ -4,12 +4,15 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <chrono>
 
 
 HashTable::HashTable() {
     capacity = 100;
     size = 0;
     table.resize(capacity);
+    retrieveDuration = 0;
+    parsingDuration = 0;
 }
 
 void HashTable::resize(int newCapacity) {
@@ -56,26 +59,34 @@ bool HashTable::contains(std::string& key) {
 }
 
 Book* HashTable::retrieve(std::string& key) {
+    auto start = std::chrono::high_resolution_clock::now();
     int index = hashFunction(key, capacity);
     for (auto& pair : table[index]) {
         if (pair.first == key) {
+            auto stop = std::chrono::high_resolution_clock::now();
+            auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
+            std::cout << "Time taken by retrieve function: " << duration.count() << " nanoseconds" << std::endl;
             return &pair.second;
         }
     }
+    auto stop = std::chrono::high_resolution_clock::now();
+    //auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
+    retrieveDuration = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start).count();
+    std::cout << "Time taken by retrieve function: " << retrieveDuration << " nanoseconds" << std::endl;
     return nullptr;
 }
 
 
-void HashTable::remove(std::string& key) {
-
-    for (auto it = table[hashFunction(key, capacity)].begin(); it != table[hashFunction(key, capacity)].end(); it++)
-        if (it->first == key) {
-            size--;
-            table[hashFunction(key, capacity)].erase(it);
-            break;
-        }
-
-}
+//void HashTable::remove(std::string& key) {
+//
+//    for (auto it = table[hashFunction(key, capacity)].begin(); it != table[hashFunction(key, capacity)].end(); it++)
+//        if (it->first == key) {
+//            size--;
+//            table[hashFunction(key, capacity)].erase(it);
+//            break;
+//        }
+//
+//}
 
 
 std::string HashTable::titleCleanup(std::string& title) {
@@ -97,6 +108,7 @@ std::string HashTable::titleCleanup(std::string& title) {
 }
 
 void HashTable::parseCSVHash(const std::string& filePath) {
+    auto start = std::chrono::high_resolution_clock::now();
     std::ifstream file(filePath);
     std::string line;
 
@@ -122,9 +134,20 @@ void HashTable::parseCSVHash(const std::string& filePath) {
         std::getline(ss, temp, '\r');
         book.pageCount = std::stoi(temp);
 
-        book.print();
+        //book.print();
 
         std::string lowerCaseBookTitle = titleCleanup(book.title);
         insert(lowerCaseBookTitle, book);
     }
+    auto stop = std::chrono::high_resolution_clock::now();
+    parsingDuration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
+    std::cout << "Time taken by function: " << parsingDuration << " milliseconds" << std::endl;
+}
+
+size_t HashTable::getRetrieveDuration() {
+    return retrieveDuration;
+}
+
+size_t HashTable::getParsingDuration() {
+    return parsingDuration;
 }
