@@ -49,7 +49,7 @@ void Trie::insert(string &key, Book *book) {
     currentNode->books.push_back(book);
 }
 
-void Trie::parseBookCSV(string& filePath) {
+void Trie::parseBookCSV(string& filePath, bool searchByTitle) {
     // Start time parsing
     auto start = std::chrono::high_resolution_clock::now();
 
@@ -82,11 +82,23 @@ void Trie::parseBookCSV(string& filePath) {
 
 //        book->print();
 
-        string lowerCaseBookTitle = toLowerAndRemoveNonLetters(book->title);
+        if (searchByTitle) {
+            string lowerCaseBookTitle = toLowerAndRemoveNonLetters(book->title);
+            // Insert Book object into Trie
+            insert(lowerCaseBookTitle, book);
 
-        // Insert Book object into Trie
-        insert(lowerCaseBookTitle, book);
+        } else {
+            string lowerCaseBookTitle = toLowerAndRemoveNonLetters(book->authors);
+            // Insert Book object into Trie
+            insert(lowerCaseBookTitle, book);
+        }
+
     }
+
+    if (searchByTitle)
+        cout << "Trie made using book Titles" << endl;
+    else
+        cout << "Trie made using book authors" << endl;
 
     // End time parsing
     auto stop = std::chrono::high_resolution_clock::now();

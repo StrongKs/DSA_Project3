@@ -14,7 +14,6 @@ int main() {
 
     // Choose Search Field (maybe implement)
     bool searchTitle = false;
-    bool searchAuthor = false;
 
     // input from user
     string inputField = "";
@@ -42,7 +41,7 @@ int main() {
         // create Trie object
         Trie booksTest;
 
-        booksTest.parseBookCSV(filePath);
+        booksTest.parseBookCSV(filePath, searchTitle);
 
         // check if prefix exist (bool)
         bool harryExist = booksTest.isPrefixExist(inputField);

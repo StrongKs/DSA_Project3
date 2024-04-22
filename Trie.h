@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <vector>
 
@@ -54,7 +55,7 @@ public:
     bool isPrefixExist(string& key);    // check if prefix is there
     vector<Book*> prefixSearch(string& key);
 
-    void parseBookCSV(string& filePath);   // iterates through CSV
+    void parseBookCSV(string& filePath, bool searchByTitle);   // iterates through CSV
     void print();
     Trie() : retreiveDuration(0) {}
 
