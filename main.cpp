@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "Trie.h"
+#include "HashTable.h"
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
