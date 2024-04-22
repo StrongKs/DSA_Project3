@@ -16,7 +16,7 @@ int main() {
     bool searchAuthor = false;
 
     // input from user
-    string inputFiled = "";
+    string inputField = "";
 
     // When user searches
     bool isSearching = false;
@@ -30,9 +30,7 @@ int main() {
         ht.parseCSVHash("GoogleBookAPIDataset.txt");
 
         // Test getting book by title
-        std::string searchTitle = "A Second Chance at Eden";
-        std::string lowerCaseSearchTitle = ht.titleCleanup(searchTitle);
-        Book* book = ht.retrieve(lowerCaseSearchTitle);
+        Book* book = ht.retrieve(inputField);
         if (book) {
             std::cout << "Book found: " << book->title << std::endl;
         } else {
@@ -46,17 +44,17 @@ int main() {
         booksTest.parseBookCSV(filePath);
 
         // check if prefix exist (bool)
-        bool harryExist = booksTest.isPrefixExist(inputFiled);
+        bool harryExist = booksTest.isPrefixExist(inputField);
         cout << "harry prefix exists: " << harryExist << endl << endl;
 
         if (harryExist) {
             cout << "PRINTING BOOKS" << endl;
-            vector<Book*> b = booksTest.prefixSearch(inputFiled);
+            vector<Book*> b = booksTest.prefixSearch(inputField);
 
             for (auto *book : b)
                 book->print();
         } else {
-            cout << "NO BOOKS WITH PREFIX: " << inputFiled << endl;
+            cout << "NO BOOKS WITH PREFIX: " << inputField << endl;
         }
 
     }
