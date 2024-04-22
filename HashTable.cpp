@@ -92,7 +92,7 @@ std::string HashTable::titleCleanup(std::string& title) {
     return output;
 }
 
-void HashTable::parseCSVHash(const std::string& filePath) {
+void HashTable::parseCSVHash(const std::string& filePath, bool titleSearch) {
     auto start = std::chrono::high_resolution_clock::now();
     std::ifstream file(filePath);
     std::string line;
@@ -119,8 +119,14 @@ void HashTable::parseCSVHash(const std::string& filePath) {
         std::getline(ss, temp, '\r');
         book.pageCount = std::stoi(temp);
 
-        std::string lowerCaseBookTitle = titleCleanup(book.title);
-        insert(lowerCaseBookTitle, book);
+        std::string newKey = "";
+        if (titleSearch) {
+            newKey = titleCleanup(book.title);
+        } else {
+            newKey = titleCleanup(book.authors);
+        }
+
+        insert(newKey, book);
     }
     auto stop = std::chrono::high_resolution_clock::now();
     parsingDuration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
