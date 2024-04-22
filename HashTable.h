@@ -13,8 +13,8 @@ private:
     size_t retrieveDuration;
     size_t parsingDuration;
 
-
 public:
+
     HashTable();
 
     void resize(int newCapacity);
@@ -36,7 +36,6 @@ public:
     size_t getRetrieveDuration();
 
     size_t getParsingDuration();
-
 
 };
 

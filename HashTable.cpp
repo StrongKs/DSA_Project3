@@ -70,7 +70,6 @@ Book* HashTable::retrieve(std::string& key) {
         }
     }
     auto stop = std::chrono::high_resolution_clock::now();
-    //auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
     retrieveDuration = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start).count();
     std::cout << "Time taken by retrieve function: " << retrieveDuration << " nanoseconds" << std::endl;
     return nullptr;
