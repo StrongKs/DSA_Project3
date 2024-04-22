@@ -61,6 +61,12 @@ build CMakeFiles/Project_3A.dir/Trie.cpp.o: CXX_COMPILER__Project_3A_unscanned_D
   OBJECT_DIR = CMakeFiles/Project_3A.dir
   OBJECT_FILE_DIR = CMakeFiles/Project_3A.dir
 
+build CMakeFiles/Project_3A.dir/HashTable.cpp.o: CXX_COMPILER__Project_3A_unscanned_Debug /Users/kentphipps/CLionProjects/COP3530_DSA/Project_3A/HashTable.cpp || cmake_object_order_depends_target_Project_3A
+  DEP_FILE = CMakeFiles/Project_3A.dir/HashTable.cpp.o.d
+  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/Project_3A.dir
+  OBJECT_FILE_DIR = CMakeFiles/Project_3A.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Project_3A
@@ -69,7 +75,7 @@ build CMakeFiles/Project_3A.dir/Trie.cpp.o: CXX_COMPILER__Project_3A_unscanned_D
 #############################################
 # Link the executable Project_3A
 
-build Project_3A: CXX_EXECUTABLE_LINKER__Project_3A_Debug CMakeFiles/Project_3A.dir/main.cpp.o CMakeFiles/Project_3A.dir/Trie.cpp.o
+build Project_3A: CXX_EXECUTABLE_LINKER__Project_3A_Debug CMakeFiles/Project_3A.dir/main.cpp.o CMakeFiles/Project_3A.dir/Trie.cpp.o CMakeFiles/Project_3A.dir/HashTable.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk
   OBJECT_DIR = CMakeFiles/Project_3A.dir
   POST_BUILD = :

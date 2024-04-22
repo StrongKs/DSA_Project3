@@ -44,6 +44,9 @@ struct TrieNode {
 };
 
 class Trie {
+private:
+    size_t retreiveDuration;
+    size_t parsingDuration;
 public:
     TrieNode* root = new TrieNode();
 
@@ -54,6 +57,9 @@ public:
 
     void parseBookCSV(string& filePath);   // iterates through CSV
     void print();
-    Trie() {}
+    Trie() : retreiveDuration(0) {}
+
+    size_t getRetreiveDuration();
+    size_t getParsingDuration();
 };
 
