@@ -23,6 +23,20 @@ int main() {
 
     if (isSearching and usingHash) {
 
+        // Create a hash table
+        HashTable ht;
+
+        // Parse the book CSV file and insert into the hash table
+        ht.parseCSVHash("GoogleBookAPIDataset.txt");
+
+        // Test getting book by title
+        Book* book = ht.retrieve(inputField);
+        if (book) {
+            std::cout << "Book found: " << book->title << std::endl;
+        } else {
+            std::cout << "Book not found" << std::endl;
+        }
+
     } else if (isSearching and usingTrie) {
         // create Trie object
         Trie booksTest;
