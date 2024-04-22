@@ -27,12 +27,15 @@ int main() {
         HashTable ht;
 
         // Parse the book CSV file and insert into the hash table
-        ht.parseCSVHash("GoogleBookAPIDataset.txt");
+        ht.parseCSVHash("GoogleBookAPIDataset.txt", searchTitle);
 
         // Test getting book by title
-        Book* book = ht.retrieve(inputField);
-        if (book) {
-            std::cout << "Book found: " << book->title << std::endl;
+        vector<Book*> book = ht.retrieve(inputField);
+        if (!book.empty()) {
+            std::cout<<"Books found: ";
+            for(Book* temp: book) {
+                std::cout << temp->title << std::endl;
+            }
         } else {
             std::cout << "Book not found" << std::endl;
         }
