@@ -23,15 +23,13 @@ public:
 
     void insert(std::string& key, const Book& value);
 
-    Book* retrieve(std::string& key);
-
-    void remove(std::string& key);
+    vector<Book*> retrieve(std::string& key);
 
     bool contains(std::string& key);
 
     std::string titleCleanup(std::string& title);
 
-    void parseCSVHash(const std::string& filePath);
+    void parseCSVHash(const std::string& filePath, bool titleSearch);
 
     size_t getRetrieveDuration();
 
