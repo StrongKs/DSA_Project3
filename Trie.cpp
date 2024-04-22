@@ -95,6 +95,8 @@ void Trie::parseBookCSV(string& filePath) {
 }
 
 bool Trie::isPrefixExist(string& key) {
+    key = toLowerAndRemoveNonLetters(key);
+
     // Initialize currNode
     TrieNode* currentNode = this->root;
 
@@ -115,6 +117,8 @@ bool Trie::isPrefixExist(string& key) {
 }
 
 vector<Book*> Trie::prefixSearch(string& key) {
+    key = toLowerAndRemoveNonLetters(key);
+
     // Start time search
     auto start = std::chrono::high_resolution_clock::now();
 
