@@ -58,36 +58,21 @@ bool HashTable::contains(std::string& key) {
     return output;
 }
 
-Book* HashTable::retrieve(std::string& key) {
+vector<Book*> HashTable::retrieve(std::string& key) {
     auto start = std::chrono::high_resolution_clock::now();
+    vector<Book*> output;
     key = titleCleanup(key);
     int index = hashFunction(key, capacity);
     for (auto& pair : table[index]) {
         if (pair.first == key) {
-            auto stop = std::chrono::high_resolution_clock::now();
-            auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
-            std::cout << "Time taken by retrieve function: " << duration.count() << " nanoseconds" << std::endl;
-            return &pair.second;
+            output.push_back(&pair.second);
         }
     }
     auto stop = std::chrono::high_resolution_clock::now();
-    retrieveDuration = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start).count();
-    std::cout << "Time taken by retrieve function: " << retrieveDuration << " nanoseconds" << std::endl;
-    return nullptr;
+    retrieveDuration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+    std::cout << "Time taken by retrieve function: " << retrieveDuration << " microseconds" << std::endl;
+    return output;
 }
-
-
-//void HashTable::remove(std::string& key) {
-//
-//    for (auto it = table[hashFunction(key, capacity)].begin(); it != table[hashFunction(key, capacity)].end(); it++)
-//        if (it->first == key) {
-//            size--;
-//            table[hashFunction(key, capacity)].erase(it);
-//            break;
-//        }
-//
-//}
-
 
 std::string HashTable::titleCleanup(std::string& title) {
     std::string output = title;
@@ -133,8 +118,6 @@ void HashTable::parseCSVHash(const std::string& filePath) {
         std::getline(ss, book.publishDate, '\t');
         std::getline(ss, temp, '\r');
         book.pageCount = std::stoi(temp);
-
-        //book.print();
 
         std::string lowerCaseBookTitle = titleCleanup(book.title);
         insert(lowerCaseBookTitle, book);
