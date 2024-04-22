@@ -60,6 +60,7 @@ bool HashTable::contains(std::string& key) {
 
 Book* HashTable::retrieve(std::string& key) {
     auto start = std::chrono::high_resolution_clock::now();
+    key = titleCleanup(key);
     int index = hashFunction(key, capacity);
     for (auto& pair : table[index]) {
         if (pair.first == key) {
