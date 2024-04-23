@@ -1,4 +1,4 @@
-# Install script for directory: /Users/kentphipps/CLionProjects/COP3530_DSA/Project_3A
+# Install script for directory: /Users/danedickerson/CLionProjects/DSA_P3
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/kentphipps/CLionProjects/COP3530_DSA/Project_3A/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/danedickerson/CLionProjects/DSA_P3/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

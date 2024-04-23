@@ -80,8 +80,6 @@ void Trie::parseBookCSV(string& filePath, bool searchByTitle) {
         std::getline(ss, temp, '\r');
         book->pageCount = stoi(temp);
 
-//        book->print();
-
         if (searchByTitle) {
             string lowerCaseBookTitle = toLowerAndRemoveNonLetters(book->title);
             // Insert Book object into Trie
@@ -95,15 +93,10 @@ void Trie::parseBookCSV(string& filePath, bool searchByTitle) {
 
     }
 
-    if (searchByTitle)
-        cout << "Trie made using book Titles" << endl;
-    else
-        cout << "Trie made using book authors" << endl;
-
     // End time parsing
     auto stop = std::chrono::high_resolution_clock::now();
     parsingDuration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
-    std::cout << "Parsing Duration: " << parsingDuration << " milliseconds" << std::endl;
+    //std::cout << "Parsing Duration: " << parsingDuration << " milliseconds" << std::endl;
 }
 
 bool Trie::isPrefixExist(string& key) {
@@ -173,14 +166,14 @@ vector<Book*> Trie::prefixSearch(string& key) {
 
     // Start time search
     auto stop = std::chrono::high_resolution_clock::now();
-    retreiveDuration = std::chrono::duration_cast<std::chrono::microseconds >(stop - start).count();
-    std::cout << "Retreive Duration: " << retreiveDuration << " microseconds" << std::endl;
+    retrieveDuration = std::chrono::duration_cast<std::chrono::microseconds >(stop - start).count();
+    //std::cout << "Retreive Duration: " << retrieveDuration << " microseconds" << std::endl;
 
     return resBooks;
 }
 
-size_t Trie::getRetreiveDuration() {
-    return retreiveDuration;
+size_t Trie::getRetrieveDuration() {
+    return retrieveDuration;
 }
 
 size_t Trie::getParsingDuration() {

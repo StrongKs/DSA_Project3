@@ -1,4 +1,5 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja -G Ninja -S /Users/kentphipps/CLionProjects/COP3530_DSA/Project_3A -B /Users/kentphipps/CLionProjects/COP3530_DSA/Project_3A/cmake-build-debug
--- Configuring done (0.2s)
+/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja -G Ninja -S /Users/danedickerson/CLionProjects/DSA_P3 -B /Users/danedickerson/CLionProjects/DSA_P3/cmake-build-debug
+-- Found SFML 2.6.1 in /opt/homebrew/lib/cmake/SFML
+-- Configuring done (0.0s)
 -- Generating done (0.0s)
--- Build files have been written to: /Users/kentphipps/CLionProjects/COP3530_DSA/Project_3A/cmake-build-debug
+-- Build files have been written to: /Users/danedickerson/CLionProjects/DSA_P3/cmake-build-debug
